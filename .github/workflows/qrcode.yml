@@ -1,0 +1,42 @@
+name: Generate QR code
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.pdf"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Link to encode"
+        required: false
+      name:
+        description: "Output file name (without extension)"
+        required: false
+
+permissions:
+  contents: write   # needed to commit the QR code back
+
+jobs:
+  qr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install qrencode
+        run: sudo apt-get update && sudo apt-get install -y qrencode
+
+      - name: Generate QR code
+        env:
+          URL: ${{ inputs.url || 'https://github.com/charlyalizadeh/CV' }}
+          NAME: ${{ inputs.name || 'qr' }}
+        run: |
+          mkdir -p qr
+          qrencode -o "qr/$NAME.png" -s 10 -m 2 "$URL"
+          qrencode -t svg -o "qr/$NAME.svg" -m 2 "$URL"
+
+      - name: Commit QR code
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Add QR code ${{ inputs.name }}"
+          file_pattern: "qr/*"
