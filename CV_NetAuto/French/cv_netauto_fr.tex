@@ -1,0 +1,119 @@
+\documentclass[9pt,a4paper]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[margin=1.2cm,top=0.8cm,bottom=0.7cm]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+\titleformat{\section}{\normalsize\bfseries\scshape}{}{0pt}{}[\vspace{-0.6em}\rule{\linewidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{0.4em}{0.25em}
+
+\setlist[itemize]{leftmargin=1.1em,itemsep=0em,topsep=0.1em,parsep=0pt,partopsep=0pt}
+
+% \entry{Title}{Right-hand text}{Subtitle}{Right-hand subtitle}
+\newcommand{\entry}[4]{%
+  \textbf{#1}\hfill #2\\[-0.1em]
+  \textit{#3}\hfill \textit{#4}\par\vspace{0.1em}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries Charly Alizadeh}\\[0.3em]
+  Ingénieur automatisation réseau \;|\; Région parisienne, France\\[0.2em]
+  \href{mailto:alizadehcharly@gmail.com}{alizadehcharly@gmail.com} \;|\;
+  \href{https://www.linkedin.com/in/charly-alizadeh}{linkedin.com/in/charly-alizadeh} \;|\;
+  \href{https://github.com/spikte}{github.com/spikte} \;|\;
+  \href{https://github.com/charlyalizadeh}{github.com/charlyalizadeh}
+\end{center}
+
+\section{Expérience professionnelle}
+
+\entry{Ingénieur Systèmes et Réseaux}{mai 2025 -- août 2025}{Axeria}{Lyon, France}
+\begin{itemize}
+  \item Conception et mise en œuvre de scripts d'automatisation s'appuyant sur les API Microsoft Graph et Tenable
+        (PowerShell, Python) afin d'industrialiser des tâches manuelles~: correctifs, enrôlement Autopilot,
+        boîtes aux lettres, épuration des postes inactifs.
+  \item Développement d'une application web interne (Python/Flask) agrégeant les données issues d'Intune,
+        d'Active Directory, d'Entra ID, de Tenable et de ManageEngine pour une vision consolidée du parc.
+  \item Administration des identités (Active Directory, Entra ID)~; rédaction de procédures et de standards IT.
+\end{itemize}
+
+
+\entry{Ingénieur de recherche}{mars 2024 -- sept. 2024}{Université Sorbonne Paris Nord}{Paris, France}
+\begin{itemize}
+  \item Implémentation en Julia d'un modèle d'Optimal Power Flow (OPF) et de ses relaxations semi-définies (SDP).
+  \item Création d'une base de données de décompositions en cliques et apprentissage automatique pour sélectionner la plus
+        favorable dans le but d'accélérer la résolution des relaxations SDP.
+\end{itemize}
+
+
+\entry{Chargé de travaux dirigés}{janv. 2023 -- janv. 2024}{ESILV -- École Supérieure d'Ingénieurs Léonard de Vinci}{Courbevoie, France}
+\begin{itemize}
+  \item Encadrement de TD/TP de la L1 au M1~: algorithmique et graphes, C\#, machine learning, deep learning,
+        science des données~; suivi de projets et évaluation des travaux.
+\end{itemize}
+
+\section{Projets personnels}
+
+\entry{Fabric de data center «~as code~»}{Go, Ansible, Jinja2, containerlab, FRRouting, Docker}{}{\href{https://github.com/spikte/data_center_fabric}{github.com/spikte/data\_center\_fabric}}
+\begin{itemize}
+  \item Contrôleur Go générant, à partir d'une description YAML déclarative de la fabric (source de vérité unique),
+        la topologie containerlab et l'inventaire Ansible correspondant.
+  \item Rôles Ansible produisant les configurations FRRouting par templates Jinja2 (underlay et overlay eBGP).
+  \item Fabric leaf-spine multi-tenant, overlay VXLAN EVPN (L2VNI et L3VNI)~; serveurs émulés par des bridges
+        Linux VLAN-aware et des conteneurs netshoot~; validation automatisée de la connectivité de bout en bout.
+\end{itemize}
+
+
+\entry{Netsim -- Simulateur réseau}{C++, Qt}{}{\href{https://github.com/spikte/netsim}{github.com/spikte/netsim}}
+\begin{itemize}
+  \item Simulateur entièrement développé sans bibliothèque réseau~: commutation L2 et table MAC, ARP, VLAN,
+        LLDP et STP partiels, routage IPv4, ICMP.
+  \item CLI inspirée de Cisco IOS (\texttt{show ip route}, \texttt{show vlan}, routes statiques, \texttt{ping},
+        \texttt{traceroute}) pour observer et diagnostiquer le réseau simulé.
+  \item Interface graphique en Qt
+\end{itemize}
+
+
+\entry{packet\_viz -- Analyse de l'origine du trafic}{C, raw sockets, MaxMind GeoLite2}{}{\href{https://github.com/charlyalizadeh/packet_viz}{github.com/charlyalizadeh/packet\_viz}}
+\begin{itemize}
+  \item Capture du trafic TCP/IPv4 par sockets bruts~; identification du système autonome (AS) et de la localisation géographique de chaque source par recherche
+        du plus long préfixe correspondant (longest-prefix match) dans un trie IP construit à partir des tables MaxMind.
+\end{itemize}
+
+
+\entry{spikte\_chat -- Serveur de messagerie}{C++, sockets Linux, epoll, TLS, SQLite}{}{\href{https://github.com/spikte/spikte_chat}{github.com/spikte/spikte\_chat}}
+\begin{itemize}
+  \item Serveur multi-clients fondé sur une boucle d'événements epoll (sans thread par client)~; transport TCP ou TLS,
+        salons multiples, persistance SQLite, mots de passe hachés avec Argon2.
+\end{itemize}
+
+\section{Formation}
+\entry{Systèmes informatiques et réseaux}{sept. 2025 -- juil. 2026}{Conservatoire National des Arts et Métiers (CNAM)}{Paris, France}
+\entry{Diplôme d'ingénieur, parcours recherche -- Big Data et intelligence artificielle}{2017 -- 2022}{ESILV -- École Supérieure d'Ingénieurs Léonard de Vinci}{Courbevoie, France}
+\entry{Mathématiques et informatique -- échange universitaire}{2019 -- 2020}{Chung-Ang University}{Séoul, Corée du Sud}
+
+\section{Compétences techniques}
+\begin{tabular}{@{}p{3.3cm}p{13.7cm}@{}}
+\textbf{Automatisation} & Ansible, Jinja2, Go, Python, PowerShell, YAML déclaratif \\
+\textbf{Routage et data center} & eBGP, VXLAN EVPN (L2VNI, L3VNI), architecture leaf-spine, multi-tenant, IPv4, FRRouting, SRLinux \\
+\textbf{Commutation} & Ethernet, VLAN, bridges Linux VLAN-aware, MAC/ARP, LLDP, STP \\
+\textbf{Labs et outillage} & containerlab, Docker, sockets Linux, epoll, TLS, Git, CMake \\
+\textbf{Systèmes et sécurité} & Linux, Windows, Active Directory, Entra ID, Intune, Autopilot, Tenable, ManageEngine \\
+\textbf{Autres langages} & C, C++, Julia, SQL, C\# \\
+\end{tabular}
+
+\vspace{0.3em}
+{\small\textbf{Publication~:} C.~Alizadeh et al., \textit{How to Learn the Optimal Clique Decompositions in Solving Semidefinite Relaxations for OPF},
+IJCNN 2022.
+\href{https://ieeexplore.ieee.org/abstract/document/9891912}{DOI~: 10.1109/IJCNN55064.2022.9891912}}
+
+\end{document}
